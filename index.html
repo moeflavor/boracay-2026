@@ -1,0 +1,1508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoeFlavor Boracay 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sand: #FFF5E4;
+            --ocean: #3DC2EC;
+            --ocean-deep: #1A8FBF;
+            --sunset: #FF8C42;
+            --sunset-pink: #FF6B9D;
+            --coral: #FF6F61;
+            --palm: #2D8B5A;
+            --shell: #FFDAB9;
+            --foam: #E8F8FF;
+            --night: #1B2838;
+            --text: #2C3E50;
+            --text-light: #5D6D7E;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: var(--sand);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* === HERO === */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(180deg, #87CEEB 0%, #B0E0E6 30%, #E0F7FA 50%, #FFF5E4 65%, #FFDAB9 80%, #FFF5E4 100%);
+            text-align: center;
+            padding: 2rem;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 120px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120'%3E%3Cpath fill='%23FFF5E4' d='M0,64L60,58.7C120,53,240,43,360,48C480,53,600,75,720,80C840,85,960,75,1080,64C1200,53,1320,43,1380,37.3L1440,32L1440,120L1380,120C1320,120,1200,120,1080,120C960,120,840,120,720,120C600,120,480,120,360,120C240,120,120,120,60,120L0,120Z'/%3E%3C/svg%3E") no-repeat bottom;
+            background-size: cover;
+            z-index: 1;
+        }
+
+        .sun {
+            position: absolute;
+            top: 60px; right: 15%;
+            width: 100px; height: 100px;
+            background: radial-gradient(circle, #FFD700 30%, rgba(255, 215, 0, 0.3) 70%, transparent 100%);
+            border-radius: 50%;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+
+        .cloud {
+            position: absolute;
+            background: white;
+            border-radius: 50px;
+            opacity: 0.7;
+            animation: float-cloud linear infinite;
+        }
+
+        .cloud::before, .cloud::after {
+            content: '';
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .cloud-1 { top: 80px; left: -200px; width: 120px; height: 40px; animation-duration: 25s; }
+        .cloud-1::before { width: 50px; height: 50px; top: -25px; left: 20px; }
+        .cloud-1::after { width: 70px; height: 60px; top: -30px; left: 50px; }
+
+        .cloud-2 { top: 140px; left: -150px; width: 90px; height: 30px; animation-duration: 35s; animation-delay: 5s; opacity: 0.5; }
+        .cloud-2::before { width: 40px; height: 40px; top: -20px; left: 15px; }
+        .cloud-2::after { width: 50px; height: 45px; top: -22px; left: 35px; }
+
+        @keyframes float-cloud {
+            from { transform: translateX(0); }
+            to { transform: translateX(calc(100vw + 300px)); }
+        }
+
+        .hero-content { position: relative; z-index: 2; }
+
+        .hero h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            color: var(--ocean-deep);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            color: var(--text-light);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero .dates {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--ocean), var(--ocean-deep));
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            box-shadow: 0 4px 15px rgba(61, 194, 236, 0.3);
+        }
+
+        .hero .team-count {
+            margin-top: 1.2rem;
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 30px;
+            z-index: 2;
+            animation: bounce 2s ease-in-out infinite;
+            color: var(--ocean-deep);
+            font-size: 1.5rem;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* === NAV === */
+        .sticky-nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 245, 228, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--shell);
+            padding: 0.8rem 1rem;
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--ocean);
+            background: transparent;
+            color: var(--ocean-deep);
+            border-radius: 50px;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            text-decoration: none;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: var(--ocean);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(61, 194, 236, 0.3);
+        }
+
+        .nav-btn.challenge-btn {
+            border-color: var(--sunset-pink);
+            color: var(--sunset-pink);
+        }
+
+        .nav-btn.challenge-btn:hover, .nav-btn.challenge-btn.active {
+            background: linear-gradient(135deg, var(--sunset-pink), var(--coral));
+            border-color: var(--sunset-pink);
+            color: white;
+        }
+
+        /* === SECTIONS === */
+        .section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+        }
+
+        .section-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 2rem;
+            color: var(--ocean-deep);
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        /* === REMINDERS === */
+        .reminders-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .reminder-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border-left: 4px solid var(--sunset);
+            transition: transform 0.2s;
+        }
+
+        .reminder-card:hover { transform: translateY(-3px); }
+
+        .reminder-card h3 {
+            color: var(--sunset);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .reminder-card p, .reminder-card li {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .reminder-card.important {
+            border-left-color: var(--coral);
+            background: linear-gradient(135deg, #FFF5F5, white);
+        }
+
+        .reminder-card.important h3 { color: var(--coral); }
+
+        .reminder-card a {
+            color: var(--ocean-deep);
+            font-weight: 600;
+            text-decoration: underline;
+        }
+
+        /* === FLIGHT GROUPS === */
+        .flight-groups {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .flight-group {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+
+        .flight-group-header {
+            padding: 1rem 1.5rem;
+            font-weight: 700;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .flight-group-header.arrival {
+            background: linear-gradient(135deg, var(--ocean), var(--ocean-deep));
+            color: white;
+        }
+
+        .flight-group-header.departure {
+            background: linear-gradient(135deg, var(--sunset), var(--sunset-pink));
+            color: white;
+        }
+
+        .flight-group-members {
+            padding: 1rem 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .member-chip {
+            background: var(--foam);
+            padding: 0.4rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--ocean-deep);
+            border: 1px solid rgba(61, 194, 236, 0.2);
+        }
+
+        .member-chip.departure {
+            background: #FFF0E6;
+            color: var(--sunset);
+            border-color: rgba(255, 140, 66, 0.2);
+        }
+
+        /* === DAILY ITINERARY === */
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px; top: 0; bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--ocean), var(--sunset-pink), var(--sunset));
+            border-radius: 3px;
+        }
+
+        .day-card {
+            position: relative;
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            transition: transform 0.2s;
+        }
+
+        .day-card:hover { transform: translateX(5px); }
+
+        .day-card::before {
+            content: '';
+            position: absolute;
+            left: -33px; top: 1.8rem;
+            width: 14px; height: 14px;
+            border-radius: 50%;
+            background: var(--ocean);
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px var(--ocean);
+        }
+
+        .day-card:nth-child(2)::before { background: #5BC0EB; box-shadow: 0 0 0 3px #5BC0EB; }
+        .day-card:nth-child(3)::before { background: var(--sunset); box-shadow: 0 0 0 3px var(--sunset); }
+        .day-card:nth-child(4)::before { background: var(--sunset-pink); box-shadow: 0 0 0 3px var(--sunset-pink); }
+        .day-card:nth-child(5)::before { background: var(--coral); box-shadow: 0 0 0 3px var(--coral); }
+        .day-card:nth-child(6)::before { background: var(--palm); box-shadow: 0 0 0 3px var(--palm); }
+
+        .day-header {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .day-number {
+            background: linear-gradient(135deg, var(--ocean), var(--ocean-deep));
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .day-card:nth-child(2) .day-number { background: linear-gradient(135deg, #5BC0EB, #3A9BC7); }
+        .day-card:nth-child(3) .day-number { background: linear-gradient(135deg, var(--sunset), #E07035); }
+        .day-card:nth-child(4) .day-number { background: linear-gradient(135deg, var(--sunset-pink), #E0558A); }
+        .day-card:nth-child(5) .day-number { background: linear-gradient(135deg, var(--coral), #E05A4F); }
+        .day-card:nth-child(6) .day-number { background: linear-gradient(135deg, var(--palm), #20694A); }
+
+        .day-date {
+            font-weight: 600;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .day-events {
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+        }
+
+        .event {
+            display: flex;
+            gap: 0.8rem;
+            align-items: flex-start;
+            padding: 0.7rem;
+            border-radius: 12px;
+            background: var(--foam);
+            font-size: 0.9rem;
+        }
+
+        .event-icon {
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            width: 28px;
+            text-align: center;
+        }
+
+        .event-text { line-height: 1.5; }
+        .event-text strong { color: var(--ocean-deep); }
+
+        .event-time {
+            font-size: 0.78rem;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .slack-note {
+            display: inline-block;
+            background: #F0E6FF;
+            color: #7C3AED;
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 0.3rem;
+        }
+
+        .arrival-note {
+            background: linear-gradient(135deg, #E8F8FF, #F0FCFF);
+            border: 1px dashed var(--ocean);
+            padding: 0.6rem 0.8rem;
+            border-radius: 10px;
+            font-size: 0.82rem;
+            color: var(--ocean-deep);
+            margin-bottom: 0.5rem;
+        }
+
+        /* === ACTIVITIES === */
+        .activity-card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            margin-bottom: 1.5rem;
+        }
+
+        .activity-header {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .activity-icon { font-size: 2.5rem; margin-bottom: 0.3rem; }
+
+        .activity-header h3 {
+            color: var(--ocean-deep);
+            font-size: 1.2rem;
+        }
+
+        .activity-header .activity-date {
+            font-size: 0.88rem;
+            color: var(--sunset);
+            font-weight: 600;
+        }
+
+        .activity-header .activity-cost {
+            font-size: 0.82rem;
+            color: var(--text-light);
+        }
+
+        .activity-groups {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .activity-group-card {
+            background: var(--foam);
+            border-radius: 14px;
+            padding: 1rem;
+        }
+
+        .activity-group-card h4 {
+            font-size: 0.88rem;
+            color: var(--ocean-deep);
+            margin-bottom: 0.5rem;
+        }
+
+        .activity-group-card .names-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 0.7rem;
+        }
+
+        .name-tag {
+            background: white;
+            padding: 0.3rem 0.7rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text);
+            border: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .voucher-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: linear-gradient(135deg, var(--ocean), var(--ocean-deep));
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        .voucher-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(61, 194, 236, 0.4);
+        }
+
+        .meetup-info {
+            background: #FFFBEB;
+            border: 1px solid #FDE68A;
+            border-radius: 12px;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-size: 0.82rem;
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        .meetup-info h4 {
+            color: var(--sunset);
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+        }
+
+        .meetup-info ul {
+            padding-left: 1.2rem;
+        }
+
+        .meetup-info li {
+            margin-bottom: 0.2rem;
+        }
+
+        .outfit-note {
+            display: inline-block;
+            background: linear-gradient(135deg, #FFF0F5, #FFE4EC);
+            border: 1px solid var(--sunset-pink);
+            color: var(--sunset-pink);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-top: 0.8rem;
+        }
+
+        /* === ROOMS === */
+        .rooms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1rem;
+        }
+
+        .room-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.2rem;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .room-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--ocean), var(--sunset-pink));
+        }
+
+        .room-number { font-weight: 700; color: var(--ocean-deep); font-size: 0.9rem; margin-bottom: 0.5rem; }
+        .room-type { font-size: 0.78rem; color: var(--text-light); margin-bottom: 0.8rem; }
+
+        .room-guests { display: flex; flex-direction: column; gap: 0.4rem; }
+
+        .room-guest {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.88rem;
+            font-weight: 600;
+        }
+
+        .room-guest .avatar {
+            width: 30px; height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        /* === CREW === */
+        .crew-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 1rem;
+        }
+
+        .crew-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.2rem 0.8rem;
+            text-align: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            transition: transform 0.2s;
+        }
+
+        .crew-card:hover { transform: translateY(-3px) rotate(1deg); }
+
+        .crew-avatar {
+            width: 55px; height: 55px;
+            border-radius: 50%;
+            margin: 0 auto 0.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .crew-name { font-weight: 700; font-size: 0.9rem; }
+        .crew-dates { font-size: 0.72rem; color: var(--text-light); margin-top: 0.2rem; }
+
+        /* === TEAM CHALLENGE === */
+        .challenge-placeholder {
+            text-align: center;
+            padding: 3rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+
+        .challenge-placeholder .emoji { font-size: 4rem; margin-bottom: 1rem; }
+
+        .challenge-placeholder h3 {
+            color: var(--sunset-pink);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .challenge-placeholder p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* === FOOTER === */
+        .footer {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(180deg, var(--sand) 0%, var(--shell) 100%);
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+
+        .footer .brand {
+            font-family: 'Pacifico', cursive;
+            color: var(--ocean-deep);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* === AVATAR COLORS === */
+        .bg-1 { background: #3DC2EC; }
+        .bg-2 { background: #FF6B9D; }
+        .bg-3 { background: #FF8C42; }
+        .bg-4 { background: #2D8B5A; }
+        .bg-5 { background: #9B59B6; }
+        .bg-6 { background: #E74C3C; }
+        .bg-7 { background: #F39C12; }
+        .bg-8 { background: #1ABC9C; }
+        .bg-9 { background: #3498DB; }
+        .bg-10 { background: #E91E63; }
+        .bg-11 { background: #00BCD4; }
+        .bg-12 { background: #8BC34A; }
+        .bg-13 { background: #FF5722; }
+        .bg-14 { background: #607D8B; }
+        .bg-15 { background: #795548; }
+        .bg-16 { background: #9C27B0; }
+        .bg-17 { background: #009688; }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 600px) {
+            .sticky-nav { justify-content: flex-start; }
+            .section { padding: 2rem 1rem; }
+            .timeline { padding-left: 30px; }
+            .day-card { padding: 1.2rem; }
+        }
+
+        html { scroll-behavior: smooth; }
+
+        .section-divider {
+            text-align: center;
+            padding: 1rem;
+            font-size: 1.5rem;
+            letter-spacing: 0.5rem;
+            color: var(--ocean);
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+    <div class="sun"></div>
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+
+    <div class="hero-content">
+        <h1>MoeFlavor Boracay</h1>
+        <p class="subtitle">Team Retreat 2026</p>
+        <div class="dates">Feb 24 - Mar 1, 2026</div>
+        <p class="team-count">17 awesome humans + sun, sand & sea</p>
+    </div>
+
+    <div class="scroll-hint">&#8595;</div>
+</div>
+
+<!-- STICKY NAV -->
+<nav class="sticky-nav" id="nav">
+    <button class="nav-btn active" onclick="scrollTo_('reminders')">Reminders</button>
+    <button class="nav-btn" onclick="scrollTo_('flights')">Flights</button>
+    <button class="nav-btn" onclick="scrollTo_('itinerary')">Itinerary</button>
+    <button class="nav-btn" onclick="scrollTo_('activities')">Activities</button>
+    <button class="nav-btn" onclick="scrollTo_('rooms')">Rooms</button>
+    <button class="nav-btn" onclick="scrollTo_('crew')">The Crew</button>
+    <button class="nav-btn challenge-btn" onclick="scrollTo_('challenge')">Team Challenge</button>
+</nav>
+
+<!-- REMINDERS -->
+<section class="section" id="reminders">
+    <h2 class="section-title">Don't Forget!</h2>
+    <p class="section-subtitle">Important reminders before we hit the beach</p>
+
+    <div class="reminders-grid">
+        <div class="reminder-card important">
+            <h3>&#9992;&#65039; Flight Receipts</h3>
+            <p>Please upload your flight receipt to <a href="https://docs.google.com/spreadsheets/d/1kJsQlGcQqmAXRrbeGJHvWZrWA7Mw3dNXl6ybOigGwdY/edit?gid=1100216343#gid=1100216343" target="_blank">our Google Sheet</a> so Janine can process reimbursements after the trip!</p>
+        </div>
+        <div class="reminder-card">
+            <h3>&#9992;&#65039; Check-in Early</h3>
+            <p>Web check-in opens 24hrs before departure. Check in early to avoid airport stress! Cebu Pacific (5J) and PAL (PR) flights.</p>
+        </div>
+        <div class="reminder-card" style="border-left-color: var(--palm);">
+            <h3 style="color: var(--palm);">&#9989; Transfers Already Paid!</h3>
+            <p>All transfers from the airport to Boracay are <strong>already covered</strong> through our transfer agency. If anyone approaches you offering transfer services, politely decline &mdash; it's already sorted! Contact <strong>Pauline</strong> or <strong>Franz</strong> if there are any issues.</p>
+        </div>
+        <div class="reminder-card">
+            <h3>&#127774; Sunscreen & Essentials</h3>
+            <p>Reef-safe sunscreen, swimwear, light clothes, sandals, and your best beach vibes. Don't forget chargers & powerbanks!</p>
+        </div>
+        <div class="reminder-card">
+            <h3>&#127968; Hotel</h3>
+            <p>We're staying at <strong>Henann Lagoon Resort</strong>, Boracay. Deluxe rooms, 2 per room. Check the Rooms section for your assignment!</p>
+        </div>
+        <div class="reminder-card">
+            <h3>&#128242; Activity Vouchers</h3>
+            <p>All Klook vouchers are linked in the Activities section below. Save them to your phone &mdash; you'll need to show them on the day!</p>
+        </div>
+    </div>
+</section>
+
+<div class="section-divider">~ ~ ~</div>
+
+<!-- FLIGHT GROUPS -->
+<section class="section" id="flights">
+    <h2 class="section-title">Getting There & Back</h2>
+    <p class="section-subtitle">Flight groups for the trip to and from Boracay</p>
+
+    <h3 style="color: var(--ocean-deep); margin-bottom: 1rem; font-size: 1.1rem;">&#9992;&#65039; Arrivals</h3>
+    <div class="flight-groups" style="margin-bottom: 2rem;">
+
+        <div class="flight-group">
+            <div class="flight-group-header arrival">Group 1 &mdash; Feb 24, 12:55 PM &bull; 5J 903</div>
+            <div class="flight-group-members">
+                <span class="member-chip">Cath</span>
+                <span class="member-chip">Ryan</span>
+                <span class="member-chip">Sharry</span>
+                <span class="member-chip">Kriselle</span>
+                <span class="member-chip">Kei</span>
+                <span class="member-chip">Pauline</span>
+                <span class="member-chip">Kez</span>
+                <span class="member-chip">Bea</span>
+                <span class="member-chip">Nguyen Lee</span>
+                <span class="member-chip">Nhu</span>
+                <span class="member-chip">GJay</span>
+            </div>
+        </div>
+
+        <div class="flight-group">
+            <div class="flight-group-header arrival">Group 2 &mdash; Feb 24, 3:30 PM &bull; 5J 136</div>
+            <div class="flight-group-members">
+                <span class="member-chip">Edgar</span>
+            </div>
+        </div>
+
+        <div class="flight-group">
+            <div class="flight-group-header arrival">Group 3 &mdash; Feb 25, 8:40 AM &bull; PR 2039</div>
+            <div class="flight-group-members">
+                <span class="member-chip">Franz</span>
+            </div>
+        </div>
+
+        <div class="flight-group">
+            <div class="flight-group-header arrival">Group 4 &mdash; Feb 25, 9:25 AM &bull; 5J 901</div>
+            <div class="flight-group-members">
+                <span class="member-chip">Olivet</span>
+            </div>
+        </div>
+
+        <div class="flight-group">
+            <div class="flight-group-header arrival">Group 5 &mdash; Feb 25, 12:45 PM &bull; PR 2041</div>
+            <div class="flight-group-members">
+                <span class="member-chip">Marielet</span>
+            </div>
+        </div>
+
+        <div class="flight-group">
+            <div class="flight-group-header arrival">Group 6 &mdash; Feb 26, 9:25 AM &bull; 5J 901</div>
+            <div class="flight-group-members">
+                <span class="member-chip">Micah</span>
+            </div>
+        </div>
+
+        <div class="flight-group">
+            <div class="flight-group-header arrival">Group 7 &mdash; Feb 26, 12:00 PM &bull; 5J 134</div>
+            <div class="flight-group-members">
+                <span class="member-chip">Phuong Truong</span>
+            </div>
+        </div>
+    </div>
+
+    <h3 style="color: var(--sunset); margin-bottom: 1rem; font-size: 1.1rem;">&#127773; Departures</h3>
+    <div class="flight-groups">
+
+        <div class="flight-group">
+            <div class="flight-group-header departure">Group 1 &mdash; Feb 28, 5:00 PM &bull; 5J 906</div>
+            <div class="flight-group-members">
+                <span class="member-chip departure">Kriselle</span>
+                <span class="member-chip departure">Kei</span>
+                <span class="member-chip departure">Pauline</span>
+                <span class="member-chip departure">Kez</span>
+                <span class="member-chip departure">Bea</span>
+                <span class="member-chip departure">Micah</span>
+                <span class="member-chip departure">GJay</span>
+                <span class="member-chip departure">Franz</span>
+                <span class="member-chip departure">Olivet</span>
+                <span class="member-chip departure">Marielet</span>
+            </div>
+        </div>
+
+        <div class="flight-group">
+            <div class="flight-group-header departure">Group 2 &mdash; Feb 28, 12:40 PM &bull; 5J 135</div>
+            <div class="flight-group-members">
+                <span class="member-chip departure">Edgar</span>
+            </div>
+        </div>
+
+        <div class="flight-group">
+            <div class="flight-group-header departure">Group 3 &mdash; Mar 1, 10:00 AM &bull; 5J 902</div>
+            <div class="flight-group-members">
+                <span class="member-chip departure">Sharry</span>
+            </div>
+        </div>
+
+        <div class="flight-group">
+            <div class="flight-group-header departure">Group 4 &mdash; Mar 1, 12:40 PM &bull; PR 2360</div>
+            <div class="flight-group-members">
+                <span class="member-chip departure">Phuong Truong</span>
+                <span class="member-chip departure">Nguyen Lee</span>
+                <span class="member-chip departure">Nhu</span>
+            </div>
+        </div>
+
+        <div class="flight-group">
+            <div class="flight-group-header departure">Group 5 &mdash; Mar 1, 7:30 AM &bull; 5J 920</div>
+            <div class="flight-group-members">
+                <span class="member-chip departure">Cath</span>
+                <span class="member-chip departure">Ryan</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="section-divider">~ ~ ~</div>
+
+<!-- DAILY ITINERARY -->
+<section class="section" id="itinerary">
+    <h2 class="section-title">Day by Day</h2>
+    <p class="section-subtitle">Your guide to an unforgettable week in paradise</p>
+
+    <div class="timeline">
+
+        <!-- DAY 1 -->
+        <div class="day-card">
+            <div class="day-header">
+                <span class="day-number">Day 1</span>
+                <span class="day-date">Tuesday, Feb 24</span>
+            </div>
+            <div class="arrival-note">
+                Group 1 arrives at 12:55 PM &bull; Group 2 arrives at 3:30 PM
+            </div>
+            <div class="day-events">
+                <div class="event">
+                    <span class="event-icon">&#127754;</span>
+                    <div class="event-text">
+                        <strong>Arrive & settle in</strong><br>
+                        <span class="event-time">Afternoon</span><br>
+                        Check into Henann Lagoon Resort, take a breather, and explore the resort at your own pace.
+                    </div>
+                </div>
+                <div class="event">
+                    <span class="event-icon">&#127860;</span>
+                    <div class="event-text">
+                        <strong>First team dinner together!</strong><br>
+                        <span class="event-time">8:00 PM</span><br>
+                        Meet up at the resort lobby or a spot on the island for our first group dinner. Walk by the beach afterwards!<br>
+                        <span class="slack-note">Exact location will be posted on Slack!</span>
+                    </div>
+                </div>
+                <div class="event">
+                    <span class="event-icon">&#127867;</span>
+                    <div class="event-text">
+                        <strong>Drinks, vibes & Group Challenge kickoff</strong><br>
+                        <span class="event-time">After dinner</span><br>
+                        Get to know everyone over drinks by the beach. Pauline will present the group challenge and reveal the team groupings!
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DAY 2 -->
+        <div class="day-card">
+            <div class="day-header">
+                <span class="day-number">Day 2</span>
+                <span class="day-date">Wednesday, Feb 25</span>
+            </div>
+            <div class="arrival-note">
+                Group 3 arrives 8:40 AM &bull; Group 4 arrives 9:25 AM &bull; Group 5 arrives 12:45 PM
+            </div>
+            <div class="day-events">
+                <div class="event">
+                    <span class="event-icon">&#128187;</span>
+                    <div class="event-text">
+                        <strong>Morning co-working session</strong><br>
+                        <span class="event-time">Morning</span><br>
+                        Work with your team on the group challenge or catch up on other tasks. Good wifi + ocean breeze = productivity!
+                    </div>
+                </div>
+                <div class="event">
+                    <span class="event-icon">&#127946;</span>
+                    <div class="event-text">
+                        <strong>Banana Boat + UFO Ride</strong><br>
+                        <span class="event-time">3:00 PM - 3:30 PM (Klook booked)</span><br>
+                        Water sports time! Hold on tight. Check the Activities section for your group and voucher.
+                    </div>
+                </div>
+                <div class="event">
+                    <span class="event-icon">&#128134;</span>
+                    <div class="event-text">
+                        <strong>Beach chill & Massage</strong><br>
+                        <span class="event-time">Late afternoon</span><br>
+                        Unwind by the beach and treat yourself to a massage. No prior booking &mdash; find your own fave spot!
+                    </div>
+                </div>
+                <div class="event">
+                    <span class="event-icon">&#127860;</span>
+                    <div class="event-text">
+                        <strong>Team dinner + Drinks (obviously)</strong><br>
+                        <span class="event-time">8:00 PM</span><br>
+                        More squad members have arrived! Let's all meet for dinner. Because all dinners have a drinking sesh, right?<br>
+                        <span class="slack-note">Kei & Kriselle (food committee) will post restau recos on Slack!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DAY 3 -->
+        <div class="day-card">
+            <div class="day-header">
+                <span class="day-number">Day 3</span>
+                <span class="day-date">Thursday, Feb 26</span>
+            </div>
+            <div class="arrival-note">
+                Group 6 arrives 9:25 AM &bull; Group 7 arrives 12:00 PM
+            </div>
+            <div class="day-events">
+                <div class="event">
+                    <span class="event-icon">&#128187;</span>
+                    <div class="event-text">
+                        <strong>Morning co-working session</strong><br>
+                        <span class="event-time">Morning</span><br>
+                        Another productive morning with ocean views.
+                    </div>
+                </div>
+                <div class="event">
+                    <span class="event-icon">&#127965;</span>
+                    <div class="event-text">
+                        <strong>Beach exploring & island vibes</strong><br>
+                        <span class="event-time">Afternoon</span><br>
+                        Discover Boracay's beautiful spots or set up a chill work-from-the-beach session.
+                    </div>
+                </div>
+                <div class="event">
+                    <span class="event-icon">&#9973;</span>
+                    <div class="event-text">
+                        <strong>Paraw Sailing</strong><br>
+                        <span class="event-time">5:00 PM (Klook booked)</span><br>
+                        Traditional Filipino sailboat ride during golden hour! Check Activities for your group and voucher.
+                    </div>
+                </div>
+                <div class="event">
+                    <span class="event-icon">&#127860;</span>
+                    <div class="event-text">
+                        <strong>Team dinner</strong><br>
+                        <span class="event-time">Evening</span><br>
+                        The full crew is finally here &mdash; time to celebrate!
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DAY 4 -->
+        <div class="day-card">
+            <div class="day-header">
+                <span class="day-number">Day 4</span>
+                <span class="day-date">Friday, Feb 27</span>
+            </div>
+            <div class="day-events">
+                <div class="event">
+                    <span class="event-icon">&#127881;</span>
+                    <div class="event-text">
+                        <strong>Group Challenge Presentations + Team Planning</strong><br>
+                        <span class="event-time">10:00 AM meet-up</span><br>
+                        Show off your team's work! Presentations followed by team planning and alignment.<br>
+                        <span class="slack-note">Exact location will be posted on Slack!</span>
+                    </div>
+                </div>
+                <div class="event">
+                    <span class="event-icon">&#127773;</span>
+                    <div class="event-text">
+                        <strong>Sunset Acoustic Boat Cruise</strong><br>
+                        <span class="event-time">3:30 PM - 6:00 PM &bull; Meet at 3:20 PM at Munimuni Restaurant (beside Starbucks), Station 1</span><br>
+                        Live acoustic music on the water while watching the Boracay sunset. The highlight of the trip!<br>
+                        <strong style="color: var(--coral);">Meet at Station 1, Munimuni Restaurant (beside Starbucks) at 3:20 PM. 3:30 PM = no-show. Don't miss this!</strong><br>
+                        <span class="outfit-note">&#128090; Outfit: Wear WHITE for team photos!</span>
+                    </div>
+                </div>
+                <div class="event">
+                    <span class="event-icon">&#127860;</span>
+                    <div class="event-text">
+                        <strong>Last team dinner with the whole crew!</strong><br>
+                        <span class="event-time">Evening</span><br>
+                        Final dinner all together. Make it count!
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DAY 5 -->
+        <div class="day-card">
+            <div class="day-header">
+                <span class="day-number">Day 5</span>
+                <span class="day-date">Saturday, Feb 28</span>
+            </div>
+            <div class="day-events">
+                <div class="event">
+                    <span class="event-icon">&#128172;</span>
+                    <div class="event-text">
+                        <strong>Checkout & team catch-ups</strong><br>
+                        <span class="event-time">Morning</span><br>
+                        Great time for any 1-on-1 conversations, team alignment chats, or just soaking in the last moments together.
+                    </div>
+                </div>
+                <div class="event">
+                    <span class="event-icon">&#128075;</span>
+                    <div class="event-text">
+                        <strong>Edgar departs</strong><br>
+                        <span class="event-time">12:40 PM &bull; 5J 135</span>
+                    </div>
+                </div>
+                <div class="event">
+                    <span class="event-icon">&#128075;</span>
+                    <div class="event-text">
+                        <strong>Group 1 departs (10 members)</strong><br>
+                        <span class="event-time">5:00 PM &bull; 5J 906</span><br>
+                        Safe travels, first batch!
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DAY 6 -->
+        <div class="day-card">
+            <div class="day-header">
+                <span class="day-number">Day 6</span>
+                <span class="day-date">Sunday, Mar 1</span>
+            </div>
+            <div class="day-events">
+                <div class="event">
+                    <span class="event-icon">&#127796;</span>
+                    <div class="event-text">
+                        <strong>Own time to explore</strong><br>
+                        <span class="event-time">Morning</span><br>
+                        Soak up the last bit of Boracay magic at your own pace before heading home.
+                    </div>
+                </div>
+                <div class="event">
+                    <span class="event-icon">&#128075;</span>
+                    <div class="event-text">
+                        <strong>Everyone heads home</strong><br>
+                        <span class="event-time">
+                            7:30 AM &bull; Cath, Ryan &bull; 5J 920<br>
+                            10:00 AM &bull; Sharry &bull; 5J 902<br>
+                            12:40 PM &bull; Phuong, Nguyen Lee, Nhu &bull; PR 2360
+                        </span><br>
+                        Until next time! &#127796;
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<div class="section-divider">~ ~ ~</div>
+
+<!-- ACTIVITIES -->
+<section class="section" id="activities">
+    <h2 class="section-title">Beach Activities</h2>
+    <p class="section-subtitle">All booked and ready to go! Save those vouchers to your phone.</p>
+
+    <!-- BANANA BOAT -->
+    <div class="activity-card">
+        <div class="activity-header">
+            <div class="activity-icon">&#127946;</div>
+            <h3>Banana Boat</h3>
+            <div class="activity-date">Feb 25 &bull; 3:30 PM</div>
+            <div class="activity-cost">Klook booked</div>
+        </div>
+        <div class="activity-groups">
+            <div class="activity-group-card">
+                <h4>Group 1</h4>
+                <div class="names-list">
+                    <span class="name-tag">Cath</span><span class="name-tag">Ryan</span><span class="name-tag">Sharry</span><span class="name-tag">Kriselle</span><span class="name-tag">Kei</span><span class="name-tag">Pauline</span>
+                </div>
+                <a href="https://drive.google.com/file/d/14EA5fbxvyoW_L5hnWzXWXugTwjlw9HY2/view?usp=sharing" target="_blank" class="voucher-btn">&#128241; View Voucher &rarr;</a>
+            </div>
+            <div class="activity-group-card">
+                <h4>Group 2</h4>
+                <div class="names-list">
+                    <span class="name-tag">Kez</span><span class="name-tag">Bea</span><span class="name-tag">Nguyen Lee</span><span class="name-tag">Nhu</span><span class="name-tag">GJay</span><span class="name-tag">Marielet</span>
+                </div>
+                <a href="https://drive.google.com/file/d/11zacO5FVUHp34_VrnFulMWS2NItbMqfY/view?usp=sharing" target="_blank" class="voucher-btn">&#128241; View Voucher &rarr;</a>
+            </div>
+        </div>
+        <div class="meetup-info">
+            <h4>&#128205; Meet-up Details</h4>
+            <ul>
+                <li>Present your mobile voucher at the location</li>
+                <li>Voucher is valid only on the specified date and time</li>
+                <li>Last admission: 3:00 PM</li>
+                <li><strong>Location:</strong> Astoria Boracay, Station 1 Beachfront &mdash; take a local tricycle (PHP 50)</li>
+                <li>Arrive <strong>30 minutes before</strong> your scheduled activity time</li>
+                <li>Latecomers or no-shows can't be refunded</li>
+                <li>Look for the guide holding/wearing a <strong>Klook sign</strong></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- UFO RIDE -->
+    <div class="activity-card">
+        <div class="activity-header">
+            <div class="activity-icon">&#128760;</div>
+            <h3>UFO Ride</h3>
+            <div class="activity-date">Feb 25 &bull; 3:00 PM</div>
+            <div class="activity-cost">Klook booked</div>
+        </div>
+        <div class="activity-groups">
+            <div class="activity-group-card">
+                <h4>Riders</h4>
+                <div class="names-list">
+                    <span class="name-tag">Cath</span><span class="name-tag">Ryan</span><span class="name-tag">Kei</span><span class="name-tag">Nguyen Lee</span>
+                </div>
+                <a href="https://drive.google.com/file/d/12ylq34acm3mLK5rKbkA-Tes_IfOArwuq/view?usp=sharing" target="_blank" class="voucher-btn">&#128241; View Voucher &rarr;</a>
+            </div>
+        </div>
+        <div class="meetup-info">
+            <h4>&#128205; Meet-up Details</h4>
+            <ul>
+                <li>Same meet-up place and time as Banana Boat</li>
+                <li><strong>Location:</strong> Astoria Boracay, Station 1 Beachfront</li>
+                <li>Arrive <strong>30 minutes before</strong> your scheduled time</li>
+                <li>Look for the guide holding/wearing a <strong>Klook sign</strong></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- PARAW SAILING -->
+    <div class="activity-card">
+        <div class="activity-header">
+            <div class="activity-icon">&#9973;</div>
+            <h3>Paraw Sailing</h3>
+            <div class="activity-date">Feb 26 &bull; 5:00 PM</div>
+            <div class="activity-cost">Klook booked</div>
+        </div>
+        <div class="activity-groups">
+            <div class="activity-group-card">
+                <h4>Group 1</h4>
+                <div class="names-list">
+                    <span class="name-tag">Cath</span><span class="name-tag">Ryan</span><span class="name-tag">Kriselle</span><span class="name-tag">Kei</span><span class="name-tag">Pauline</span><span class="name-tag">Kez</span><span class="name-tag">Bea</span>
+                </div>
+                <a href="https://drive.google.com/file/d/1Qs61YsVO7zUht3kAAN7Ppu7q0G8U9wnf/view?usp=sharing" target="_blank" class="voucher-btn">&#128241; View Voucher &rarr;</a>
+            </div>
+            <div class="activity-group-card">
+                <h4>Group 2</h4>
+                <div class="names-list">
+                    <span class="name-tag">Phuong Truong</span><span class="name-tag">Nguyen Lee</span><span class="name-tag">Nhu</span><span class="name-tag">GJay</span><span class="name-tag">Franz</span><span class="name-tag">Edgar</span><span class="name-tag">Marielet</span>
+                </div>
+                <a href="https://drive.google.com/file/d/1I4ju0T0G0Z3Pn-2dzQ16Mwbb-cZfc1T9/view?usp=sharing" target="_blank" class="voucher-btn">&#128241; View Voucher &rarr;</a>
+            </div>
+        </div>
+        <div class="meetup-info">
+            <h4>&#128205; Meet-up Details</h4>
+            <ul>
+                <li>Present your mobile voucher at the location</li>
+                <li>Voucher is valid only on the specified date and time</li>
+                <li><strong>Location:</strong> Astoria Boracay, Boat Station 1, Brgy. Balabag, Malay, 5608 Aklan &mdash; take a local tricycle (PHP 50)</li>
+                <li>Arrive <strong>15 minutes before</strong> your scheduled activity time</li>
+                <li>A Klook representative will be waiting at the meet-up location holding a Klook placard for 30 minutes before the activity</li>
+                <li>If you arrive past the waiting time and can't be contacted, you'll be considered a no-show (no refund)</li>
+                <li>Schedule and meetup point may change depending on traffic and weather. Make sure your contact info is accurate!</li>
+                <li>Look for the guide holding/wearing a <strong>Klook sign</strong></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- SUNSET ACOUSTIC BOAT -->
+    <div class="activity-card">
+        <div class="activity-header">
+            <div class="activity-icon">&#127773;</div>
+            <h3>Sunset Acoustic Boat Cruise</h3>
+            <div class="activity-date">Feb 27 &bull; 3:30 PM - 6:00 PM</div>
+            <div class="activity-cost">Meet at 3:20 PM &bull; Everyone's in!</div>
+        </div>
+        <div class="activity-groups">
+            <div class="activity-group-card">
+                <h4>The Whole Crew</h4>
+                <div class="names-list">
+                    <span class="name-tag">Cath</span><span class="name-tag">Ryan</span><span class="name-tag">Sharry</span><span class="name-tag">Kriselle</span><span class="name-tag">Kei</span><span class="name-tag">Pauline</span><span class="name-tag">Kez</span><span class="name-tag">Bea</span><span class="name-tag">Micah</span><span class="name-tag">Phuong Truong</span><span class="name-tag">Nguyen Lee</span><span class="name-tag">Nhu</span><span class="name-tag">GJay</span><span class="name-tag">Franz</span><span class="name-tag">Olivet</span><span class="name-tag">Edgar</span><span class="name-tag">Marielet</span>
+                </div>
+            </div>
+        </div>
+        <div class="meetup-info">
+            <h4>&#9203; Important Info</h4>
+            <ul>
+                <li><strong>Meeting time: 3:20 PM</strong> at <strong>Station 1, Munimuni Restaurant</strong> (beside Starbucks)</li>
+                <li>3:30 PM = no-show if you're late for the meeting time. No exceptions!</li>
+                <li><span class="outfit-note" style="display:inline; padding: 0.2rem 0.6rem; font-size: 0.8rem;">&#128090; Wear WHITE for team photos!</span></li>
+            </ul>
+        </div>
+    </div>
+
+</section>
+
+<div class="section-divider">~ ~ ~</div>
+
+<!-- ROOMS -->
+<section class="section" id="rooms">
+    <h2 class="section-title">Room Assignments</h2>
+    <p class="section-subtitle">Henann Lagoon Resort &bull; Deluxe Rooms</p>
+
+    <div class="rooms-grid">
+        <div class="room-card">
+            <div class="room-number">Room 1</div>
+            <div class="room-type">Deluxe Room</div>
+            <div class="room-guests">
+                <div class="room-guest"><span class="avatar bg-3">Sh</span> Sharry</div>
+                <div class="room-guest"><span class="avatar bg-4">Kr</span> Kriselle</div>
+            </div>
+        </div>
+        <div class="room-card">
+            <div class="room-number">Room 2</div>
+            <div class="room-type">Deluxe Room</div>
+            <div class="room-guests">
+                <div class="room-guest"><span class="avatar bg-5">Ke</span> Kei</div>
+                <div class="room-guest"><span class="avatar bg-7">Kz</span> Kez</div>
+            </div>
+        </div>
+        <div class="room-card">
+            <div class="room-number">Room 3</div>
+            <div class="room-type">Deluxe Room</div>
+            <div class="room-guests">
+                <div class="room-guest"><span class="avatar bg-9">Mi</span> Micah</div>
+                <div class="room-guest"><span class="avatar bg-8">Be</span> Bea</div>
+            </div>
+        </div>
+        <div class="room-card">
+            <div class="room-number">Room 4</div>
+            <div class="room-type">Deluxe Room</div>
+            <div class="room-guests">
+                <div class="room-guest"><span class="avatar bg-6">Pa</span> Pauline</div>
+                <div class="room-guest"><span class="avatar bg-17">Ma</span> Marielet</div>
+            </div>
+        </div>
+        <div class="room-card">
+            <div class="room-number">Room 5</div>
+            <div class="room-type">Deluxe Room</div>
+            <div class="room-guests">
+                <div class="room-guest"><span class="avatar bg-12">GJ</span> GJay</div>
+                <div class="room-guest"><span class="avatar bg-14">Ed</span> Edgar</div>
+            </div>
+        </div>
+        <div class="room-card">
+            <div class="room-number">Room 6</div>
+            <div class="room-type">Deluxe Room</div>
+            <div class="room-guests">
+                <div class="room-guest"><span class="avatar bg-13">Fr</span> Franz</div>
+                <div class="room-guest"><span class="avatar bg-15">Ol</span> Olivet</div>
+            </div>
+        </div>
+        <div class="room-card">
+            <div class="room-number">Room 7</div>
+            <div class="room-type">Deluxe Twin Room (1 Queen + 1 Single)</div>
+            <div class="room-guests">
+                <div class="room-guest"><span class="avatar bg-9">PT</span> Phuong Truong</div>
+                <div class="room-guest"><span class="avatar bg-10">NL</span> Nguyen Lee</div>
+                <div class="room-guest"><span class="avatar bg-11">Nh</span> Nhu</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="section-divider">~ ~ ~</div>
+
+<!-- CREW -->
+<section class="section" id="crew">
+    <h2 class="section-title">The Crew</h2>
+    <p class="section-subtitle">17 amazing people, one unforgettable trip</p>
+
+    <div class="crew-grid">
+        <div class="crew-card">
+            <div class="crew-avatar bg-1">Ca</div>
+            <div class="crew-name">Cath</div>
+            <div class="crew-dates">Feb 24 - Mar 1</div>
+        </div>
+        <div class="crew-card">
+            <div class="crew-avatar bg-2">Ry</div>
+            <div class="crew-name">Ryan</div>
+            <div class="crew-dates">Feb 24 - Mar 1</div>
+        </div>
+        <div class="crew-card">
+            <div class="crew-avatar bg-3">Sh</div>
+            <div class="crew-name">Sharry</div>
+            <div class="crew-dates">Feb 21 - Mar 1</div>
+        </div>
+        <div class="crew-card">
+            <div class="crew-avatar bg-4">Kr</div>
+            <div class="crew-name">Kriselle</div>
+            <div class="crew-dates">Feb 24 - Feb 28</div>
+        </div>
+        <div class="crew-card">
+            <div class="crew-avatar bg-5">Ke</div>
+            <div class="crew-name">Kei</div>
+            <div class="crew-dates">Feb 24 - Feb 28</div>
+        </div>
+        <div class="crew-card">
+            <div class="crew-avatar bg-6">Pa</div>
+            <div class="crew-name">Pauline</div>
+            <div class="crew-dates">Feb 24 - Feb 28</div>
+        </div>
+        <div class="crew-card">
+            <div class="crew-avatar bg-7">Kz</div>
+            <div class="crew-name">Kez</div>
+            <div class="crew-dates">Feb 24 - Feb 28</div>
+        </div>
+        <div class="crew-card">
+            <div class="crew-avatar bg-8">Be</div>
+            <div class="crew-name">Bea</div>
+            <div class="crew-dates">Feb 24 - Feb 28</div>
+        </div>
+        <div class="crew-card">
+            <div class="crew-avatar bg-9">Mi</div>
+            <div class="crew-name">Micah</div>
+            <div class="crew-dates">Feb 26 - Feb 28</div>
+        </div>
+        <div class="crew-card">
+            <div class="crew-avatar bg-16">PT</div>
+            <div class="crew-name">Phuong Truong</div>
+            <div class="crew-dates">Feb 26 - Mar 1</div>
+        </div>
+        <div class="crew-card">
+            <div class="crew-avatar bg-10">NL</div>
+            <div class="crew-name">Nguyen Lee</div>
+            <div class="crew-dates">Feb 24 - Mar 1</div>
+        </div>
+        <div class="crew-card">
+            <div class="crew-avatar bg-11">Nh</div>
+            <div class="crew-name">Nhu</div>
+            <div class="crew-dates">Feb 24 - Mar 1</div>
+        </div>
+        <div class="crew-card">
+            <div class="crew-avatar bg-12">GJ</div>
+            <div class="crew-name">GJay</div>
+            <div class="crew-dates">Feb 24 - Feb 28</div>
+        </div>
+        <div class="crew-card">
+            <div class="crew-avatar bg-13">Fr</div>
+            <div class="crew-name">Franz</div>
+            <div class="crew-dates">Feb 25 - Feb 28</div>
+        </div>
+        <div class="crew-card">
+            <div class="crew-avatar bg-15">Ol</div>
+            <div class="crew-name">Olivet</div>
+            <div class="crew-dates">Feb 25 - Feb 28</div>
+        </div>
+        <div class="crew-card">
+            <div class="crew-avatar bg-14">Ed</div>
+            <div class="crew-name">Edgar</div>
+            <div class="crew-dates">Feb 24 - Feb 28</div>
+        </div>
+        <div class="crew-card">
+            <div class="crew-avatar bg-17">Ma</div>
+            <div class="crew-name">Marielet</div>
+            <div class="crew-dates">Feb 25 - Feb 28</div>
+        </div>
+    </div>
+</section>
+
+<div class="section-divider">~ ~ ~</div>
+
+<!-- TEAM CHALLENGE -->
+<section class="section" id="challenge">
+    <h2 class="section-title">Team Challenge</h2>
+    <p class="section-subtitle">May the best team win!</p>
+
+    <div class="challenge-placeholder">
+        <div class="emoji">&#127942;</div>
+        <h3>Coming Soon!</h3>
+        <p>The team challenge details will be revealed on Day 1 by Pauline.<br>Stay tuned for groupings, rules, and what's at stake!</p>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="brand">MoeFlavor</div>
+    <p>Boracay Team Retreat 2026</p>
+    <p style="margin-top: 0.5rem; font-size: 0.75rem;">See you in paradise!</p>
+</footer>
+
+<script>
+    function scrollTo_(id) {
+        document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    const sections = ['reminders', 'flights', 'itinerary', 'activities', 'rooms', 'crew', 'challenge'];
+    const navBtns = document.querySelectorAll('.nav-btn');
+
+    window.addEventListener('scroll', () => {
+        let current = '';
+        for (const id of sections) {
+            const el = document.getElementById(id);
+            if (el && el.getBoundingClientRect().top < 200) {
+                current = id;
+            }
+        }
+        navBtns.forEach((btn, i) => {
+            btn.classList.toggle('active', sections[i] === current);
+        });
+    });
+</script>
+
+</body>
+</html>
